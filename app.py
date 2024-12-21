@@ -1,10 +1,16 @@
+import os
 import nltk
 from nltk.corpus import wordnet
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-# Download the WordNet corpus (only needed once)
-nltk.download('wordnet')
+# Set the NLTK data path to the folder where nltk_data is located
+os.environ['NLTK_DATA'] = './nltk_data'
+
+# Check if wordnet data is available, otherwise, download it
+# This step ensures that it won't try to download again if the data is already present
+if not os.path.exists('./nltk_data/corpora/wordnet.zip'):
+    nltk.download('wordnet')
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
