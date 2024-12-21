@@ -1,9 +1,9 @@
+import nltk
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import nltk
 from nltk.corpus import wordnet
 
-# Point NLTK to the local nltk_data folder
+# Add local nltk_data to path
 nltk.data.path.append("./nltk_data")
 
 app = Flask(__name__)
@@ -22,7 +22,5 @@ def get_meaning():
     else:
         return jsonify({"word": word, "meaning": "No definition found."}), 404
 
-# Vercel handler
-def handler(event, context):
-    from flask import request
-    return app(event, context)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
