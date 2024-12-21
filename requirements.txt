@@ -1,4 +1,4 @@
 flask
 nltk
 flask_cors
-setuptools
+
